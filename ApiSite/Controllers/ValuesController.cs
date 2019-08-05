@@ -14,7 +14,7 @@ namespace ApiSite.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Get()
         {
-            Fila fila = new Fila("FilaSite");
+            FilaServices fila = new FilaServices("FilaSite");
             //var resultado = fila.RetrieveSingleMessage();
             var dadosPagina = fila.ReturnMessage();
 
@@ -35,8 +35,9 @@ namespace ApiSite.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Post([FromBody] DadosPagina dadosPagina)
         {
-            Fila fila = new Fila("FilaSite");
+            FilaServices fila = new FilaServices("FilaSite");
             var resultado = fila.WriteMessageOnQueue(dadosPagina);
+            
 
             if (resultado)
             {

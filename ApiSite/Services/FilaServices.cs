@@ -1,17 +1,19 @@
 ﻿using ApiSite.Models;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using RabbitMQ.Client.MessagePatterns;
 using System.Text;
 
 namespace ApiSite.Services
 {
-    public class Fila
+    public class FilaServices
     {
         private ConnectionFactory _connectionFactory;
         private IConnection _connection;
         private string _queueName;
 
-        public Fila(string queueName)
+        public FilaServices(string queueName)
         {
             _connectionFactory = GetConnectionFactory();
             _connection = CreateConnection(_connectionFactory);
@@ -78,7 +80,6 @@ namespace ApiSite.Services
             }
             return data != null ? JsonConvert.DeserializeObject<DadosPagina>(Encoding.UTF8.GetString(data.Body)) : null;
         }
-
 
     }
 }
