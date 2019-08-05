@@ -2,10 +2,12 @@
 using ApiSite.Services;
 using ApiSite.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 
 namespace ApiSite.Controllers
 {
-    [Route("api/[controller]")]    
+    [Route("api/[controller]")]
+    [EnableCors("AllowMyOrigin")]
     public class ValuesController : Controller
     {
         // GET api/values
@@ -38,10 +40,9 @@ namespace ApiSite.Controllers
             FilaServices fila = new FilaServices("FilaSite");
             var resultado = fila.WriteMessageOnQueue(dadosPagina);
             
-
             if (resultado)
-            {
-                return Ok(dadosPagina);
+            {                 
+               return Ok(dadosPagina);
             }
             else
             {

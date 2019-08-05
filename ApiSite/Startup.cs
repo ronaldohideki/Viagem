@@ -18,6 +18,18 @@ namespace ApiSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+
+            {
+
+                options.AddPolicy("AllowMyOrigin",
+
+                builder => builder.WithOrigins("http://localhost.com")
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                );
+
+            });
             services.AddMvc();
         }
 
@@ -28,7 +40,7 @@ namespace ApiSite
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowMyOrigin");
             app.UseMvc();
         }
     }
