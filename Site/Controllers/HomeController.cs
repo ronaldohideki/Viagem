@@ -20,26 +20,30 @@ namespace Site.Controllers
             IPAddress[] ip = Dns.GetHostAddresses(nome);
 
             IP = ip[1].ToString();
-            ViewData["IP"] = IP;
+          
         }
 
         public IActionResult Index()
         {
+            ViewData["IP"] = IP;
             return View();
         }
 
         public IActionResult Landing()
         {
+            ViewData["IP"] = IP;
             return View();
         }
 
         public IActionResult Checkout()
         {
+            ViewData["IP"] = IP;
             return View();
         }
 
         public IActionResult Confirmacao()
         {
+            ViewData["IP"] = IP;
             return View();
         }
         public IActionResult Error()
